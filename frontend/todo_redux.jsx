@@ -1,8 +1,11 @@
 import * as ReactDOMClient from 'react-dom/client';
 import React from 'react';
-import store from './store/store'
+import store from './store/store';
+import { receiveTodo, receiveTodos } from "./actions/todo_actions"
 
 window.store = store;
+window.receiveTodo = receiveTodo;
+window.receiveTodos = receiveTodos
 
 
 document.addEventListener('DOMContentLoaded', () => {
