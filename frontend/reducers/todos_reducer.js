@@ -18,14 +18,14 @@ const initialState = {
 const todosReducer = (state = initialState, action) => {
     switch(action.type) {
         case RECEIVE_TODOS: return (
-            action.todos.reduce((prevValue, currentValue) => {
-                return prevValue[currentValue.id] = currentValue;
+            action.todos.reduce((accumulator, value, index) => {
+                return {...accumulator, [value.id]: value}
             }, {})
         )
         case RECEIVE_TODO: return {
             ...state,
             [action.todo.id]:  action.todo
-        }   
+        }
         default: 
             return state;
     }

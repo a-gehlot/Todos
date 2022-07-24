@@ -1849,7 +1849,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_TODO": () => (/* binding */ RECEIVE_TODO),
 /* harmony export */   "RECEIVE_TODOS": () => (/* binding */ RECEIVE_TODOS),
 /* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo),
-/* harmony export */   "receiveTodos": () => (/* binding */ receiveTodos)
+/* harmony export */   "receiveTodos": () => (/* binding */ receiveTodos),
+/* harmony export */   "removeTodo": () => (/* binding */ removeTodo)
 /* harmony export */ });
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
@@ -1860,6 +1861,12 @@ var receiveTodos = function receiveTodos(todos) {
   };
 };
 var receiveTodo = function receiveTodo(todo) {
+  return {
+    type: RECEIVE_TODO,
+    todo: todo
+  };
+};
+var removeTodo = function removeTodo(todo) {
   return {
     type: RECEIVE_TODO,
     todo: todo
@@ -1928,8 +1935,8 @@ var todosReducer = function todosReducer() {
 
   switch (action.type) {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODOS:
-      return action.todos.reduce(function (prevValue, currentValue) {
-        return prevValue[currentValue.id] = currentValue;
+      return action.todos.reduce(function (accumulator, value, index) {
+        return _objectSpread(_objectSpread({}, accumulator), {}, _defineProperty({}, value.id, value));
       }, {});
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODO:

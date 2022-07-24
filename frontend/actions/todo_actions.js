@@ -14,3 +14,10 @@ export const receiveTodo = (todo) => {
         todo,
     }
 }
+
+export const removeTodo = (todo) => {
+    return {
+        type: RECEIVE_TODO,
+        todo,
+    }
+}
