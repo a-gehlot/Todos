@@ -1868,10 +1868,10 @@ var receiveTodo = function receiveTodo(todo) {
     todo: todo
   };
 };
-var removeTodo = function removeTodo(id) {
+var removeTodo = function removeTodo(todo) {
   return {
     type: REMOVE_TODO,
-    id: id
+    todo: todo
   };
 };
 
@@ -1947,7 +1947,7 @@ var todosReducer = function todosReducer() {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:
       var next = _objectSpread({}, state);
 
-      delete next[action.id];
+      delete next[action.todo.id];
       return next;
 
     default:

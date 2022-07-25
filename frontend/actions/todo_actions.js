@@ -16,9 +16,9 @@ export const receiveTodo = (todo) => {
     }
 }
 
-export const removeTodo = (id) => {
+export const removeTodo = (todo) => {
     return {
         type: REMOVE_TODO,
-        id,
+        todo,
     }
 }
