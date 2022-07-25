@@ -1848,12 +1848,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_TODO": () => (/* binding */ RECEIVE_TODO),
 /* harmony export */   "RECEIVE_TODOS": () => (/* binding */ RECEIVE_TODOS),
+/* harmony export */   "REMOVE_TODO": () => (/* binding */ REMOVE_TODO),
 /* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo),
 /* harmony export */   "receiveTodos": () => (/* binding */ receiveTodos),
 /* harmony export */   "removeTodo": () => (/* binding */ removeTodo)
 /* harmony export */ });
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
+var REMOVE_TODO = "REMOVE_TODO";
 var receiveTodos = function receiveTodos(todos) {
   return {
     type: RECEIVE_TODOS,
@@ -1866,10 +1868,10 @@ var receiveTodo = function receiveTodo(todo) {
     todo: todo
   };
 };
-var removeTodo = function removeTodo(todo) {
+var removeTodo = function removeTodo(id) {
   return {
-    type: RECEIVE_TODO,
-    todo: todo
+    type: REMOVE_TODO,
+    id: id
   };
 };
 
@@ -1941,6 +1943,12 @@ var todosReducer = function todosReducer() {
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODO:
       return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.todo.id, action.todo));
+
+    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:
+      var next = _objectSpread({}, state);
+
+      delete next[action.id];
+      return next;
 
     default:
       return state;
@@ -36640,6 +36648,7 @@ __webpack_require__.r(__webpack_exports__);
 window.store = _store_store__WEBPACK_IMPORTED_MODULE_2__["default"];
 window.receiveTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.receiveTodo;
 window.receiveTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.receiveTodos;
+window.removeTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.removeTodo;
 document.addEventListener('DOMContentLoaded', function () {
   var container = document.getElementById('root');
   var root = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot(container);
