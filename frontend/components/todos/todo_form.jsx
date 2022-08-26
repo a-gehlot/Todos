@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-function TodoForm() {
+function TodoForm(props) {
     const [title, setTitle] = useState('initial title');
     const [body, setBody] = useState('initial body');
+    console.log(props)
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(title)
+        props.receiveTodo({title: title, body: body})
     }
 
     return(
