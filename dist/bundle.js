@@ -2006,8 +2006,6 @@ function TodoForm(props) {
       body = _useState4[0],
       setBody = _useState4[1];
 
-  console.log(props);
-
   function handleSubmit(e) {
     e.preventDefault();
     props.receiveTodo({
@@ -2072,8 +2070,10 @@ var TodoList = function TodoList(props) {
     receiveTodo: props.receiveTodo
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.todos.map(function (todo, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_todo_list_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      key: (0,_util_unique_id__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-      todo: todo
+      key: idx,
+      todo: todo,
+      removeTodo: props.removeTodo,
+      receiveTodo: props.receiveTodo
     });
   })));
 };
@@ -2111,6 +2111,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     receiveTodo: function receiveTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__.receiveTodo)(todo));
+    },
+    removeTodo: function removeTodo(todo) {
+      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__.removeTodo)(todo));
     }
   };
 };
@@ -2134,7 +2137,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function TodoListItem(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, props.todo.title), "Body:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, props.todo.body));
+  var toggleTodo = function toggleTodo(e) {
+    var toggledTodo = Object.assign({}, props.todo, {
+      done: !props.todo.done
+    });
+    props.receiveTodo(toggledTodo);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, props.todo.title), "Body:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, props.todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(e) {
+      return props.removeTodo(props.todo);
+    }
+  }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: toggleTodo
+  }, props.todo.done ? "Undo" : "Done"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoListItem);

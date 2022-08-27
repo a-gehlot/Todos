@@ -6,11 +6,14 @@ import uniqueID from "../../util/unique_id";
 const TodoList = (props) => {
     return(
         <div>
-            <TodoForm receiveTodo={ props.receiveTodo } />
+            <TodoForm 
+                receiveTodo={ props.receiveTodo } />
             <ul>
                 {props.todos.map((todo, idx) => {
                     return (
-                        <TodoListItem key={uniqueID()} todo={todo} />)
+                        <TodoListItem key={idx} todo={todo} 
+                        removeTodo={ props.removeTodo }
+                        receiveTodo={ props.receiveTodo} />)
                 })}
             </ul>
         </div>
