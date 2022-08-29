@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import uniqueId from "../../util/unique_id"
 
 function TodoForm(props) {
     const [title, setTitle] = useState('initial title');
@@ -6,7 +7,8 @@ function TodoForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.receiveTodo({title: title, body: body})
+        const todo = Object.assign({}, {title: title, body: body}, {id: uniqueId()})
+        props.receiveTodo(todo)
     }
 
     return(
