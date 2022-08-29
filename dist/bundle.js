@@ -1969,6 +1969,88 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/steps/step_form.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/steps/step_form.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_unique_id__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/unique_id */ "./frontend/util/unique_id.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var StepForm = function StepForm(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial todo title'),
+      _useState2 = _slicedToArray(_useState, 2),
+      title = _useState2[0],
+      setTitle = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial todo body'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      body = _useState4[0],
+      setBody = _useState4[1];
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    var step = Object.assign({}, {
+      title: title,
+      body: body,
+      todo_id: props.todo_id
+    }, {
+      id: (0,_util_unique_id__WEBPACK_IMPORTED_MODULE_1__["default"])()
+    });
+    props.receiveStep(step);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit,
+    action: "submit"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "title"
+  }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    id: "title",
+    onChange: function onChange(event) {
+      return setTitle(event.target.value);
+    },
+    value: title
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "body"
+  }, "Body"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    id: "body",
+    onChange: function onChange(event) {
+      return setBody(event.target.value);
+    },
+    value: body
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "submit",
+    value: "Submit"
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StepForm);
+
+/***/ }),
+
 /***/ "./frontend/components/steps/step_list.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/steps/step_list.jsx ***!
@@ -1981,18 +2063,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _step_list_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./step_list_item_container */ "./frontend/components/steps/step_list_item_container.jsx");
+/* harmony import */ var _step_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./step_form */ "./frontend/components/steps/step_form.jsx");
+/* harmony import */ var _step_list_item_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./step_list_item_container */ "./frontend/components/steps/step_list_item_container.jsx");
+
 
 
 
 var StepList = function StepList(props) {
   var stepList = props.steps.map(function (step, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_list_item_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_list_item_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: idx,
       step: step
     });
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, stepList);
+
+  var todoID = function todoID() {
+    return props.steps[0].todo_id;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, stepList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    receiveStep: props.receiveStep,
+    todo_id: todoID()
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StepList);
