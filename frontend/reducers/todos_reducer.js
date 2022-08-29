@@ -17,11 +17,12 @@ const initialState = {
 
 const todosReducer = (state = initialState, action) => {
     switch(action.type) {
-        case RECEIVE_TODOS: return (
-            action.todos.reduce((accumulator, value, index) => {
-                return {...accumulator, [value.id]: value}
-            }, {})
-        )
+        case RECEIVE_TODOS: 
+        nextState = Object.assign({}, state);
+        action.todos.forEach((todo) => {
+            nextState[todo.id] = todo;
+        })
+        return nextState;
         case RECEIVE_TODO: return {
             ...state,
             [action.todo.id]:  action.todo

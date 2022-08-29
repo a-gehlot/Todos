@@ -3,7 +3,7 @@ import React from 'react';
 import store from './store/store';
 import { receiveTodo, receiveTodos, removeTodo } from "./actions/todo_actions"
 import { receiveStep, receiveSteps, removeStep } from "./actions/step_actions"
-import allTodos from './reducers/selectors';
+import { allTodos, stepsByTodoId } from './reducers/selectors';
 import App from "./components/App"
 import Root from './components/root';
 
@@ -15,6 +15,7 @@ window.receiveStep = receiveStep;
 window.receiveSteps = receiveSteps;
 window.removeStep = removeStep;
 window.allTodos = allTodos
+window.stepsByTodoId = stepsByTodoId;
 
 
 

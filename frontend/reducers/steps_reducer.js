@@ -6,16 +6,22 @@ const initialState = {
         title: "buy soap",
         todo_id: 1,
         done: false
+    },
+
+    2: {
+        id: 2,
+        title: "buy scrubber",
+        todo_id: 1,
+        done: false
     }
 }
 
 const stepsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case RECEIVE_STEPS: return (
-            action.steps.reduce((accumulator, value, index) => {
-                return {...accumulator, [value.id]: value}
-            }, {})
-        )
+        case RECEIVE_STEPS:
+            nextState = Object.assign({}, state);
+            action.steps.forEach((step) => nextState[step.id] = step);
+            return nextState;
 
         case RECEIVE_STEP: return {
             ...state,

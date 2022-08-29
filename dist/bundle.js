@@ -1969,6 +1969,143 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/steps/step_list.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/steps/step_list.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _step_list_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./step_list_item_container */ "./frontend/components/steps/step_list_item_container.jsx");
+
+
+
+var StepList = function StepList(props) {
+  var stepList = props.steps.map(function (step, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_list_item_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: idx,
+      step: step
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, stepList);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StepList);
+
+/***/ }),
+
+/***/ "./frontend/components/steps/step_list_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/steps/step_list_container.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_step_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/step_actions */ "./frontend/actions/step_actions.js");
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+/* harmony import */ var _step_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./step_list */ "./frontend/components/steps/step_list.jsx");
+
+
+
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveStep: function receiveStep(todo) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.receiveStep)(todo));
+    }
+  };
+};
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var todo_id = _ref.todo_id;
+  return {
+    steps: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.stepsByTodoId)(state, todo_id),
+    todo_id: todo_id
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_step_list__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/steps/step_list_item.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/steps/step_list_item.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StepListItem = function StepListItem(props) {
+  function toggleDone(e) {
+    e.preventDefault();
+    var toggledStep = Object.assign({}, props.step, {
+      done: !props.step.done
+    });
+    props.receiveStep(toggledStep);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Step: ", props.step.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: toggleDone
+  }, props.step.done ? "Undo" : "Done"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(e) {
+      return props.removeStep(props.step);
+    }
+  }, "Delete"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StepListItem);
+
+/***/ }),
+
+/***/ "./frontend/components/steps/step_list_item_container.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/steps/step_list_item_container.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_step_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/step_actions */ "./frontend/actions/step_actions.js");
+/* harmony import */ var _step_list_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./step_list_item */ "./frontend/components/steps/step_list_item.jsx");
+
+
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveStep: function receiveStep(step) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.receiveStep)(step));
+    },
+    removeStep: function removeStep(step) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.removeStep)(step));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mapDispatchToProps)(_step_list_item__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/todos/todo_detail_view.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/todos/todo_detail_view.jsx ***!
@@ -1981,6 +2118,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _steps_step_list_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../steps/step_list_container */ "./frontend/components/steps/step_list_container.jsx");
+
 
 
 var TodoDetailView = function TodoDetailView(props) {
@@ -1988,7 +2127,9 @@ var TodoDetailView = function TodoDetailView(props) {
     onClick: function onClick(e) {
       return props.removeTodo(props.todo);
     }
-  }, "Delete"));
+  }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_steps_step_list_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    todo_id: props.todo.id
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoDetailView);
@@ -2016,6 +2157,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     removeTodo: function removeTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__.removeTodo)(todo));
+    },
+    recieveSteps: function recieveSteps(todo) {
+      return dispatch(receiveSteps(todo));
     }
   };
 };
@@ -2155,7 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    todos: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["default"])(state)
+    todos: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__.allTodos)(state)
   };
 };
 
@@ -2269,13 +2413,26 @@ var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "allTodos": () => (/* binding */ allTodos),
+/* harmony export */   "stepsByTodoId": () => (/* binding */ stepsByTodoId)
 /* harmony export */ });
 var allTodos = function allTodos(state) {
   return Object.values(state.todos);
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (allTodos);
+var stepsByTodoId = function stepsByTodoId(state, todoId) {
+  var stepsByTodoId = [];
+  Object.keys(state.steps).forEach(function (stepId) {
+    var step = state.steps[stepId];
+
+    if (step.todo_id === todoId) {
+      stepsByTodoId.push(step);
+    }
+  });
+  return stepsByTodoId;
+};
+
+
 
 /***/ }),
 
@@ -2303,6 +2460,12 @@ var initialState = {
     title: "buy soap",
     todo_id: 1,
     done: false
+  },
+  2: {
+    id: 2,
+    title: "buy scrubber",
+    todo_id: 1,
+    done: false
   }
 };
 
@@ -2312,9 +2475,11 @@ var stepsReducer = function stepsReducer() {
 
   switch (action.type) {
     case _actions_step_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_STEPS:
-      return action.steps.reduce(function (accumulator, value, index) {
-        return _objectSpread(_objectSpread({}, accumulator), {}, _defineProperty({}, value.id, value));
-      }, {});
+      nextState = Object.assign({}, state);
+      action.steps.forEach(function (step) {
+        return nextState[step.id] = step;
+      });
+      return nextState;
 
     case _actions_step_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_STEP:
       return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.step.id, action.step));
@@ -2373,9 +2538,11 @@ var todosReducer = function todosReducer() {
 
   switch (action.type) {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODOS:
-      return action.todos.reduce(function (accumulator, value, index) {
-        return _objectSpread(_objectSpread({}, accumulator), {}, _defineProperty({}, value.id, value));
-      }, {});
+      nextState = Object.assign({}, state);
+      action.todos.forEach(function (todo) {
+        nextState[todo.id] = todo;
+      });
+      return nextState;
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODO:
       return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.todo.id, action.todo));
@@ -39751,7 +39918,8 @@ window.removeTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.removeTod
 window.receiveStep = _actions_step_actions__WEBPACK_IMPORTED_MODULE_4__.receiveStep;
 window.receiveSteps = _actions_step_actions__WEBPACK_IMPORTED_MODULE_4__.receiveSteps;
 window.removeStep = _actions_step_actions__WEBPACK_IMPORTED_MODULE_4__.removeStep;
-window.allTodos = _reducers_selectors__WEBPACK_IMPORTED_MODULE_5__["default"];
+window.allTodos = _reducers_selectors__WEBPACK_IMPORTED_MODULE_5__.allTodos;
+window.stepsByTodoId = _reducers_selectors__WEBPACK_IMPORTED_MODULE_5__.stepsByTodoId;
 document.addEventListener('DOMContentLoaded', function () {
   var container = document.getElementById('root');
   var root = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot(container);
