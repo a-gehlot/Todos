@@ -3,6 +3,7 @@ import StepForm from "./step_form";
 import StepListItemContainer from './step_list_item_container'
 
 const StepList = (props) => {
+    console.log(props)
     const stepList = props.steps.map((step, idx) => {
         return(
             <StepListItemContainer 
@@ -13,7 +14,7 @@ const StepList = (props) => {
     })
 
     const todoID = () => {
-        return (props.steps[0].todo_id);
+        return (props.todo_id);
     }
 
     return(

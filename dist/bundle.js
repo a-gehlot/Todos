@@ -2070,6 +2070,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var StepList = function StepList(props) {
+  console.log(props);
   var stepList = props.steps.map(function (step, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_list_item_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: idx,
@@ -2078,7 +2079,7 @@ var StepList = function StepList(props) {
   });
 
   var todoID = function todoID() {
-    return props.steps[0].todo_id;
+    return props.todo_id;
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, stepList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
