@@ -21,16 +21,16 @@ function TodoListItem(props) {
     }
 
     function checkForDetail() {
-        if (detail) {
+        if (!detail) {
             return <TodoDetailViewContainer todo={props.todo} />
         }
     }
 
     return(
-        <ul>
-            Title:<li>{props.todo.title}</li>
-            <button onClick={toggleTodo}>{props.todo.done ? "Undo" : "Done"}</button>
-            <button onClick={toggleDetail}>Detail</button>
+        <ul className="todo-list-item">
+            <li className="todo-list-item-title">{props.todo.title}</li>
+            <button className="toggle-todo" onClick={toggleTodo}>{props.todo.done ? "Undo" : "Done"}</button>
+            <button className="toggle-detail" onClick={toggleDetail}>Detail</button>
             {checkForDetail()}
         </ul>)
 }

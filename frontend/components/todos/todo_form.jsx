@@ -14,7 +14,7 @@ function TodoForm(props) {
     }
 
     return(
-        <form onSubmit={handleSubmit} action="submit">
+        <form className="todo-form" onSubmit={handleSubmit} action="submit">
             <label htmlFor="title">Title</label>
             <input 
                 type="text" 

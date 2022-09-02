@@ -4,10 +4,10 @@ import TodoListItem from "./todo_list_item";
 
 const TodoList = (props) => {
     return(
-        <div>
+        <div className="todo-list">
             <TodoForm 
                 receiveTodo={ props.receiveTodo } />
-            <ul>
+            <ul className="todo-items">
                 {props.todos.map((todo, idx) => {
                     return (
                         <TodoListItem key={idx} todo={todo} 

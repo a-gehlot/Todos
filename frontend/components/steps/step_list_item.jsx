@@ -10,11 +10,16 @@ const StepListItem = (props) => {
         props.receiveStep(toggledStep)
     }
 
+    const style = {
+        textDecoration: props.step.done ? "line-through" : "none"
+    }
+
+
     return(
-        <ul>
-            <li>Step: {props.step.title}</li>
-            <button onClick={toggleDone}>{ props.step.done ? "Undo" : "Done" }</button>
-            <button onClick={e => props.removeStep(props.step)}>Delete</button>
+        <ul className="step-list-item">
+            <li className="step-title" style={style}>{props.step.title}</li>
+            <button className="step-done" onClick={toggleDone}>{ props.step.done ? "Undo" : "Done" }</button>
+            <button className="step-delete" onClick={e => props.removeStep(props.step)}>Delete</button>
         </ul>
 
     )

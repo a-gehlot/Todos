@@ -15,7 +15,7 @@ const StepForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} action="submit">
+        <form className="step-form" onSubmit={handleSubmit} action="submit">
             <label htmlFor="title">Title</label>
             <input
                 type="text"

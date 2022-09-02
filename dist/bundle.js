@@ -2023,6 +2023,7 @@ var StepForm = function StepForm(props) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    className: "step-form",
     onSubmit: handleSubmit,
     action: "submit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
@@ -2084,7 +2085,9 @@ var StepList = function StepList(props) {
     return props.todo_id;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, stepList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "step-list"
+  }, stepList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
     receiveStep: props.receiveStep,
     todo_id: todoID()
   }));
@@ -2156,9 +2159,19 @@ var StepListItem = function StepListItem(props) {
     props.receiveStep(toggledStep);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Step: ", props.step.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  var style = {
+    textDecoration: props.step.done ? "line-through" : "none"
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "step-list-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: "step-title",
+    style: style
+  }, props.step.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "step-done",
     onClick: toggleDone
   }, props.step.done ? "Undo" : "Done"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "step-delete",
     onClick: function onClick(e) {
       return props.removeStep(props.step);
     }
@@ -2218,7 +2231,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TodoDetailView = function TodoDetailView(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Body: ", props.todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "todo-detail-view"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: "todo-body"
+  }, props.todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "remove-todo",
     onClick: function onClick(e) {
       return props.removeTodo(props.todo);
     }
@@ -2316,6 +2334,7 @@ function TodoForm(props) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    className: "todo-form",
     onSubmit: handleSubmit,
     action: "submit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
@@ -2365,9 +2384,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TodoList = function TodoList(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_todo_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "todo-list"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_todo_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
     receiveTodo: props.receiveTodo
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.todos.map(function (todo, idx) {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "todo-items"
+  }, props.todos.map(function (todo, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_todo_list_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: idx,
       todo: todo,
@@ -2465,16 +2488,22 @@ function TodoListItem(props) {
   };
 
   function checkForDetail() {
-    if (detail) {
+    if (!detail) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_todo_detail_view_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         todo: props.todo
       });
     }
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, props.todo.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "todo-list-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: "todo-list-item-title"
+  }, props.todo.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "toggle-todo",
     onClick: toggleTodo
   }, props.todo.done ? "Undo" : "Done"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "toggle-detail",
     onClick: toggleDetail
   }, "Detail"), checkForDetail());
 }
