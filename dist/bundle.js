@@ -1998,12 +1998,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var StepForm = function StepForm(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial todo title'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       title = _useState2[0],
       setTitle = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial todo body'),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       body = _useState4[0],
       setBody = _useState4[1];
@@ -2018,6 +2018,8 @@ var StepForm = function StepForm(props) {
       id: (0,_util_unique_id__WEBPACK_IMPORTED_MODULE_1__["default"])()
     });
     props.receiveStep(step);
+    setTitle("");
+    setBody("");
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -2290,12 +2292,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function TodoForm(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial title'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       title = _useState2[0],
       setTitle = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('initial body'),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       body = _useState4[0],
       setBody = _useState4[1];
@@ -2309,6 +2311,8 @@ function TodoForm(props) {
       id: (0,_util_unique_id__WEBPACK_IMPORTED_MODULE_1__["default"])()
     });
     props.receiveTodo(todo);
+    setTitle("");
+    setBody("");
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -2674,9 +2678,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 
 
+var preloadedState;
+
+if (window.localStorage.state) {
+  preloadedState = JSON.parse(window.localStorage.state);
+} else {
+  preloadedState = {};
+}
+
 var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
-  reducer: _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+  reducer: _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  preloadedState: preloadedState
 });
+
+var addLocalStore = function addLocalStore() {
+  localStorage.state = JSON.stringify(store.getState());
+};
+
+store.subscribe(addLocalStore);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 /***/ }),

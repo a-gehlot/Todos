@@ -2,14 +2,16 @@ import React, {useState} from "react";
 import uniqueID from "../../util/unique_id";
 
 const StepForm = (props) => {
-    const [title, setTitle] = useState('initial todo title')
-    const [body, setBody] = useState('initial todo body')
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
 
 
     function handleSubmit(e) {
         e.preventDefault();
         const step = Object.assign({}, { title: title, body: body, todo_id: props.todo_id }, { id: uniqueID() })
         props.receiveStep(step)
+        setTitle("");
+        setBody("");
     }
 
     return (
